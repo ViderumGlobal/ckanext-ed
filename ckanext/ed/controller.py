@@ -1,6 +1,6 @@
 from ckan.plugins import toolkit
 import os
-from ckanext.us_ed_theme.helpers import get_storage_path_for
+from ckanext.ed.helpers import get_storage_path_for
 from ckan.common import response
 from ckan.lib import base
 
@@ -10,7 +10,7 @@ class DownloadController(base.BaseController):
         if not zip_id:
             abort(404, toolkit._('Resource data not found'))
         file_name, package_name = zip_id.split('::')
-        file_path = get_storage_path_for('temp-us_ed_theme/' + file_name)
+        file_path = get_storage_path_for('temp-ed/' + file_name)
 
         if not os.path.isfile(file_path):
             abort(404, toolkit._('Resource data not found'))

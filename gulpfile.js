@@ -6,7 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 
 // Rebuild CSS from LESS
 gulp.task('less', function () {
-  return gulp.src('less/custom.less')
+  return gulp.src('ckanext/ed/fanstatic/less/custom.less')
   // .pipe(sourcemaps.init()) - Uncomment when developing
   .pipe(less())
   .pipe(cleanCSS({
@@ -19,12 +19,12 @@ gulp.task('less', function () {
     ]
   }))
   // .pipe(sourcemaps.write()) - Uncomment when developing
-  .pipe(gulp.dest('css'));
+  .pipe(gulp.dest('ckanext/ed/fanstatic/css'));
 });
 
 // Watch for LESS file changes
 gulp.task('watch', function () {
-  gulp.watch(['less/**/*.less'], gulp.parallel('less'));
+  gulp.watch(['ckanext/ed/fanstatic/less/**/*.less'], gulp.parallel('less'));
 });
 
 // The default Gulp.js task

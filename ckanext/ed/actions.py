@@ -1,6 +1,6 @@
 from ckan.plugins import toolkit
 import uuid
-from ckanext.us_ed_theme import helpers
+from ckanext.ed import helpers
 import zipfile
 import os
 from ckan.controllers.admin import get_sysadmins
@@ -82,7 +82,7 @@ def prepare_zip_resources(context, data_dict):
     :rtype: dict
     """
     file_name = uuid.uuid4().hex + '.{ext}'.format(ext='zip')
-    file_path = helpers.get_storage_path_for('temp-us_ed_theme') + '/' + file_name
+    file_path = helpers.get_storage_path_for('temp-ed') + '/' + file_name
     resourceArchived = False
     package_id = None
 

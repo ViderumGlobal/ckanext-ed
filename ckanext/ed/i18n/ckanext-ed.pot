@@ -1,13 +1,13 @@
-# Translations template for ckanext-us_ed_theme.
+# Translations template for ckanext-ed.
 # Copyright (C) 2018 ORGANIZATION
-# This file is distributed under the same license as the ckanext-us_ed_theme
+# This file is distributed under the same license as the ckanext-ed
 # project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ckanext-us_ed_theme 0.0.1\n"
+"Project-Id-Version: ckanext-ed 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-08-30 19:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -18,61 +18,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: ckanext/us_ed_theme/templates/header.html:5
+#: ckanext/ed/templates/header.html:5
 msgid "Datasets"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/header.html:6
+#: ckanext/ed/templates/header.html:6
 msgid "Organizations"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/header.html:7
+#: ckanext/ed/templates/header.html:7
 msgid "Groups"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/header.html:8
+#: ckanext/ed/templates/header.html:8
 msgid "Applications"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/header.html:9
+#: ckanext/ed/templates/header.html:9
 msgid "About"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/home/layout1.html:24
+#: ckanext/ed/templates/home/layout1.html:24
 msgid "Recent datasets"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/home/layout1.html:32
+#: ckanext/ed/templates/home/layout1.html:32
 msgid "No datasets available."
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/home/layout1.html:42
+#: ckanext/ed/templates/home/layout1.html:42
 msgid "Categories"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/home/snippets/stats.html:5
+#: ckanext/ed/templates/home/snippets/stats.html:5
 msgid "{site_title} statistics"
 msgstr ""
 
-#: ckanext/us_ed_theme/templates/home/snippets/stats.html:10
+#: ckanext/ed/templates/home/snippets/stats.html:10
 msgid "dataset"
 msgid_plural "datasets"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/us_ed_theme/templates/home/snippets/stats.html:16
+#: ckanext/ed/templates/home/snippets/stats.html:16
 msgid "organization"
 msgid_plural "organizations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/us_ed_theme/templates/home/snippets/stats.html:22
+#: ckanext/ed/templates/home/snippets/stats.html:22
 msgid "group"
 msgid_plural "groups"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ckanext/us_ed_theme/templates/home/snippets/stats.html:28
+#: ckanext/ed/templates/home/snippets/stats.html:28
 msgid "application"
 msgid_plural "applications"
 msgstr[0] ""

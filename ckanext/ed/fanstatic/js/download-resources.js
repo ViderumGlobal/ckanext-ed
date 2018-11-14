@@ -44,7 +44,7 @@ $(document).ready(function () {
   });
 
   downloadResourcesBtn.click(function (e) {
-    var url = window.location.origin + '/api/action/us_ed_theme_prepare_zip_resources';
+    var url = window.location.origin + '/api/action/ed_prepare_zip_resources';
     var data = { resources: [] };
 
     downloadResourcesBtn.attr('disabled', 'disabled');

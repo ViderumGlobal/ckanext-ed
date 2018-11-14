@@ -1,6 +1,6 @@
 from ckan import plugins
 from ckan.tests import helpers as test_helpers
-from ckanext.us_ed_theme import helpers
+from ckanext.ed import helpers
 from ckan.tests import factories
 from ckan.lib.search import rebuild
 
@@ -11,14 +11,14 @@ class HelpersBase(object):
 
         rebuild()
 
-        if not plugins.plugin_loaded('us_ed_theme'):
-            plugins.load('us_ed_theme')
+        if not plugins.plugin_loaded('ed'):
+            plugins.load('ed')
 
     @classmethod
     def teardown_class(self):
 
-        if plugins.plugin_loaded('us_ed_theme'):
-            plugins.unload('us_ed_theme')
+        if plugins.plugin_loaded('ed'):
+            plugins.unload('ed')
 
 
 class TestHelpers(HelpersBase, test_helpers.FunctionalTestBase):
