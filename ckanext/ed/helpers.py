@@ -105,3 +105,7 @@ def get_total_views_for_dataset(id):
         return dataset.get('tracking_summary').get('total')
     except Exception:
         return 0
+
+
+def get_recent_blog_posts(count=10):
+    return []

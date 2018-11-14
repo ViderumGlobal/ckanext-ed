@@ -14,7 +14,7 @@
 
 <div role="main">
   <div class="container">
-    {% set groups = h.us_ed_get_groups() %} {% if groups %}
+    {% set groups = h.ed_get_groups() %} {% if groups %}
     <div class="module module-topics">
       <h2 class="title">{{ _('Categories') }}</h2>
       <ul class="module-topics-list">
@@ -38,7 +38,7 @@
   <div class="container">
     <div class="row">
       <div class="module-datasets col-lg-6 col-md-12 col-sm-12 col-xs-12">
-        {% set recent_datasets = h.us_ed_get_recently_updated_datasets(limit=5) %}
+        {% set recent_datasets = h.ed_get_recently_updated_datasets(limit=5) %}
         <h3 class="title"><i class="fa fa-clock-o"></i> {{_('Recent Datasets')}}</h3>
           {% if recent_datasets %}
           <ul class="module-recent list-unstyled">
@@ -52,7 +52,7 @@
           {% endif %}
       </div>
       <div class="module-datasets col-lg-6 col-md-12 col-sm-12 col-xs-12">
-        {% set most_popular_datasets = h.us_ed_get_most_popular_datasets(limit=5) %}
+        {% set most_popular_datasets = h.ed_get_most_popular_datasets(limit=5) %}
         <h3 class="title"><i class="fa fa-line-chart"></i> {{_('Most Popular Datasets')}}</h3>
           {% if most_popular_datasets %}
           <ul class="module-recent list-unstyled">
@@ -69,7 +69,7 @@
   </div>
 
 
-{% set recent_blogs = h.get_recent_blog_posts(3) %}
+{% set recent_blogs = h.ed_get_recent_blog_posts(3) %}
 
 {% if recent_blogs %}
 <div role="main" class="blog-bg">
