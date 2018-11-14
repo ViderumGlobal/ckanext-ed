@@ -1,7 +1,6 @@
 # Translations template for ckanext-ed.
 # Copyright (C) 2018 ORGANIZATION
-# This file is distributed under the same license as the ckanext-ed
-# project.
+# This file is distributed under the same license as the ckanext-ed project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
 #
 #, fuzzy
@@ -9,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-ed 0.0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-08-30 19:26+0200\n"
+"POT-Creation-Date: 2018-11-14 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +16,55 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
+
+#: ckanext/ed/controller.py:11 ckanext/ed/controller.py:16
+msgid "Resource data not found"
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/download-resources.js:51
+msgid "Preparing zip archive..."
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/download-resources.js:63
+#: ckanext/ed/fanstatic/js/download-resources.js:78
+#: ckanext/ed/templates/package/snippets/resources_download.html:11
+msgid "Download"
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/download-resources.js:74
+msgid "Could not create a zip archive."
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/download-resources.js:80
+msgid "An error occured while preparing zip archive."
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/mark-all-resources.js:11
+msgid "Unmark All"
+msgstr ""
+
+#: ckanext/ed/fanstatic/js/mark-all-resources.js:14
+#: ckanext/ed/templates/package/snippets/resources_download.html:7
+msgid "Mark All"
+msgstr ""
+
+#: ckanext/ed/templates/footer.html:14
+msgid "About {0}"
+msgstr ""
+
+#: ckanext/ed/templates/footer.html:25
+msgid "CKAN API"
+msgstr ""
+
+#: ckanext/ed/templates/footer.html:26
+msgid "CKAN Association"
+msgstr ""
+
+#: ckanext/ed/templates/footer.html:34
+msgid ""
+"<strong>Powered by</strong> <a class=\"hide-text ckan-footer-logo\" "
+"href=\"http://ckan.org\">CKAN</a>"
+msgstr ""
 
 #: ckanext/ed/templates/header.html:5
 msgid "Datasets"
@@ -38,16 +86,137 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ckanext/ed/templates/home/layout1.html:24
-msgid "Recent datasets"
+#: ckanext/ed/templates/ckanext/stats/index.html:10
+msgid "Total number of Datasets"
 msgstr ""
 
-#: ckanext/ed/templates/home/layout1.html:32
-msgid "No datasets available."
+#: ckanext/ed/templates/ckanext/stats/index.html:17
+#: ckanext/ed/templates/ckanext/stats/index.html:40
+msgid "Date"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:18
+msgid "Total datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:33
+#: ckanext/ed/templates/ckanext/stats/index.html:179
+msgid "Dataset Revisions per Week"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:41
+msgid "All dataset revisions"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:42
+msgid "New datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:58
+#: ckanext/ed/templates/ckanext/stats/index.html:180
+msgid "Top Rated Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:64
+msgid "Average rating"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:65
+msgid "Number of ratings"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:79
+msgid "No ratings"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:84
+#: ckanext/ed/templates/ckanext/stats/index.html:181
+msgid "Most Edited Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:89
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:90
+msgid "Number of edits"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:103
+msgid "No edited datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:108
+#: ckanext/ed/templates/ckanext/stats/index.html:182
+msgid "Largest Groups"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:113
+msgid "Group"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:114
+msgid "Number of datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:127
+msgid "No groups"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:132
+#: ckanext/ed/templates/ckanext/stats/index.html:183
+msgid "Top Tags"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:136
+msgid "Tag Name"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:137
+#: ckanext/ed/templates/ckanext/stats/index.html:157
+msgid "Number of Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:152
+#: ckanext/ed/templates/ckanext/stats/index.html:184
+msgid "Users Creating Most Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:156
+msgid "User"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:175
+msgid "Statistics Menu"
+msgstr ""
+
+#: ckanext/ed/templates/ckanext/stats/index.html:178
+msgid "Total Number of Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/home/layout1.html:19
+msgid "Categories"
 msgstr ""
 
 #: ckanext/ed/templates/home/layout1.html:42
-msgid "Categories"
+msgid "Recent Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/home/layout1.html:51
+#: ckanext/ed/templates/home/layout1.html:65
+msgid "No datasets available."
+msgstr ""
+
+#: ckanext/ed/templates/home/layout1.html:56
+msgid "Most Popular Datasets"
+msgstr ""
+
+#: ckanext/ed/templates/home/layout1.html:79
+msgid "Recent Blog Posts"
+msgstr ""
+
+#: ckanext/ed/templates/home/layout1.html:81
+msgid "Blog Аrchive"
 msgstr ""
 
 #: ckanext/ed/templates/home/snippets/stats.html:5
@@ -75,6 +244,24 @@ msgstr[1] ""
 #: ckanext/ed/templates/home/snippets/stats.html:28
 msgid "application"
 msgid_plural "applications"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ckanext/ed/templates/package/snippets/info.html:7
+msgid "Followers"
+msgstr ""
+
+#: ckanext/ed/templates/package/snippets/info.html:12
+msgid "Views"
+msgstr ""
+
+#: ckanext/ed/templates/package/snippets/resource_item.html:7
+msgid "Mark for Download"
+msgstr ""
+
+#: ckanext/ed/templates/snippets/package_item.html:7
+msgid "{total_views} view"
+msgid_plural "{total_views} views"
 msgstr[0] ""
 msgstr[1] ""
 
