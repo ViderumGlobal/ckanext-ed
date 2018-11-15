@@ -3,14 +3,17 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
+        "docker:bash": "docker exec -it dockerckaned_ckan-dev_1 bash",
         "docker:build": "docker-compose -f ../../docker-compose.dev.yml build",
         "docker:pull": "docker pull openknowledge/ckan-base:2.8 && docker pull openknowledge/ckan-dev:2.8 && docker-compose -f ../../docker-compose.dev.yml build ckan-dev",
         "docker:up": "docker-compose -f ../../docker-compose.dev.yml up",
-        "i18n:compile": "docker exec -it dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py compile_catalog -l en -f'",
-        "i18n:extract": "docker exec -it dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py extract_messages'",
+        "docker:up:test": "docker-compose -f ../../docker-compose.dev.yml -f ../../docker-compose.test.yml up",
+        "i18n:compile": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py compile_catalog -l en -f'",
+        "i18n:extract": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py extract_messages'",
         "static:build": "gulp less",
         "static:watch": "gulp watch",
-        "test:unit": "echo \"Error: no test specified\" && exit 1"
+        "test:unit": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && nosetests --nologcapture'",
+        "test:user": "echo 'not implemented'"
     },
     "repository": {
         "type": "git",

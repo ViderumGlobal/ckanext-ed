@@ -78,6 +78,25 @@ To login as an admin:
 
 ### Running unit tests
 
+We write and store unit tests inside the `ckanext-ed/tests` directory. See CKAN documentation for more information regarding how to write tests. To run unit tests we have to stop development server:
+
+```bash
+$ npm run docker:up
+# It's running so we use CTRL-C to stop
+```
+
+Then we need to start testing server:
+
+```bash
+$ npm run docker:up:test
+```
+
+In another terminal window run the test command:
+
+```bash
+$ npm run test:unit
+```
+
 ### Running user tests
 
 ### Working with static files
@@ -105,6 +124,14 @@ $ npm run i18n:compile
 ```
 
 See CKAN documentation for more on i18n management.
+
+### Log into container
+
+To issue commands inside a running container (after `$ npm run docker:up`):
+
+```
+$ npm run docker:bash
+```
 
 ### Updating docker images
 
