@@ -12,8 +12,8 @@
         "i18n:extract": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py extract_messages'",
         "static:build": "gulp less",
         "static:watch": "gulp watch",
-        "test:unit": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && nosetests --nologcapture'",
-        "test:user": "echo 'not implemented'"
+        "test:e2e": "nightwatch -e chrome",
+        "test:unit": "docker exec -t dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && nosetests --nologcapture'"
     },
     "repository": {
         "type": "git",
@@ -25,11 +25,15 @@
         "url": "https://github.com/CivicActions/ckanext-ed/issues"
     },
     "devDependencies": {
+        "chromedriver": "^2.43.1",
         "gulp": "^4.0.0",
         "gulp-autoprefixer": "^5.0.0",
         "gulp-clean-css": "^3.9.4",
         "gulp-less": "^4.0.1",
-        "less": "^3.8.1"
+        "less": "^3.8.1",
+        "nightwatch": "^0.9.21",
+        "saucelabs": "^1.5.0",
+        "selenium-server": "3.141.5"
     },
     "homepage": "https://github.com/CivicActions/ckanext-ed#readme"
 }
