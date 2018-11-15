@@ -10,7 +10,7 @@ Please follow installation instructions of the software below if needed. The fol
 - `docker`
 - `docker-compose`
 - `nvm/Node.js` (optional)
-- `/etc/hosts` contains `127.0.0.1 ckan-dev` line
+- `/etc/hosts` contains the `127.0.0.1 ckan-dev` line
 
 ### Setup environment
 
@@ -21,9 +21,9 @@ $ git clone git@github.com:CivicActions/docker-ckan-ed.git
 $ cd docker-ckan-ed
 ```
 
-This is a docker compose setup for local development. It's designed to support live extensions development which are stored inside the `src` directory.
+This is a docker compose setup for local development. It's designed to support live development of extensions which are stored inside the `src` directory.
 
-Clone the `ckanext-ed` repository to the `src` folder (we also can create a symbolic link to our `projects` directory for the `ckanext-ed` directory):
+Clone the `ckanext-ed` repository to the `src` folder (we also can create a symbolic link back to the `projects` directory):
 
 ```bash
 $ cd src
@@ -33,13 +33,13 @@ $ cd ckanext-ed
 
 Now we have cloned all the required repositories and we're located in our main working directory `docker-ckan-ed/src/ckanext-ed`
 
-For running managing commands and building static files, we can use `npm`. Let's enable a Node.js environment:
+For running commands and building static files, we can use `npm`. Let's enable a Node.js environment:
 
 > You have to have `nvm` installed or you can use any other way to get Node.js prepared - system setup etc
 
 ```bash
 $ nvm install 10
-$ nvm user 10
+$ nvm use 10
 $ npm install
 ```
 
@@ -105,7 +105,7 @@ $ npm run docker:up:test
 In another terminal window run the test command:
 
 ```bash
-$ npm install nightwatch # Install test runner
+$ npm install nightwatch --no-save # Install test runner
 $ npm run test:e2e
 ```
 
