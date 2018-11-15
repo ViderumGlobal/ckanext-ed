@@ -105,6 +105,7 @@ $ npm run docker:up:test
 In another terminal window run the test command:
 
 ```bash
+$ npm install nightwatch # Install test runner
 $ npm run test:e2e
 ```
 
