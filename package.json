@@ -1,27 +1,32 @@
 {
-  "name": "ckanext-ed",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "build": "gulp less",
-    "dev": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/CivicActions/ckanext-ed.git"
-  },
-  "author": "Goce Mitevski",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/CivicActions/ckanext-ed/issues"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^5.0.0",
-    "gulp-clean-css": "^3.9.4",
-    "gulp-less": "^4.0.1",
-    "less": "^3.8.1"
-  },
-  "homepage": "https://github.com/CivicActions/ckanext-ed#readme"
+    "name": "ckanext-ed",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "docker:build": "docker-compose -f ../../docker-compose.dev.yml build",
+        "docker:pull": "docker pull openknowledge/ckan-base:2.8 && docker pull openknowledge/ckan-dev:2.8 && docker-compose -f ../../docker-compose.dev.yml build ckan-dev",
+        "docker:up": "docker-compose -f ../../docker-compose.dev.yml up",
+        "i18n:compile": "docker exec -it dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py compile_catalog -l en -f'",
+        "i18n:extract": "docker exec -it dockerckaned_ckan-dev_1 bash -c 'cd /srv/app/src_extensions/ckanext-ed && python setup.py extract_messages'",
+        "static:build": "gulp less",
+        "static:watch": "gulp watch",
+        "test:unit": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CivicActions/ckanext-ed.git"
+    },
+    "author": "Goce Mitevski",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/CivicActions/ckanext-ed/issues"
+    },
+    "devDependencies": {
+        "gulp": "^4.0.0",
+        "gulp-autoprefixer": "^5.0.0",
+        "gulp-clean-css": "^3.9.4",
+        "gulp-less": "^4.0.1",
+        "less": "^3.8.1"
+    },
+    "homepage": "https://github.com/CivicActions/ckanext-ed#readme"
 }

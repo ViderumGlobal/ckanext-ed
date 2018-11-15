@@ -1,101 +1,130 @@
 # ckanext-ed
 
-[![image](https://travis-ci.org/ViderumGlobal/ckanext-ed.svg?branch=master)](https://travis-ci.org/ViderumGlobal/ckanext-ed)
+This is the main repo for the US Deparment of Education ckan-based project. This documentation covers all of the development aspects.
 
-## Requirements
+## Getting started
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+### Requirements
 
-## Installation
+Please follow installation instructions of the software below if needed. The following steps require:
+- `docker`
+- `docker-compose`
+- `nvm/Node.js` (optional)
+- `/etc/hosts` contains `127.0.0.1 ckan-dev` line
 
-To install ckanext-ed:
+### Setup environment
 
-1.  Activate your CKAN virtual environment, for example:
+Clone the `docker-ckan-ed` repository (assuming that we're inside our projects directory):
 
-```
-. /usr/lib/ckan/default/bin/activate
-```
-
-2.  Install the ckanext-ed Python package into your virtual
-    environment:
-
-```
-pip install ckanext-ed
+```bash
+$ git clone git@github.com:CivicActions/docker-ckan-ed.git
+$ cd docker-ckan-ed
 ```
 
-3.  Add `ed` to the `ckan.plugins` setting in your CKAN config
-    file (by default the config file is located at
-    `/etc/ckan/default/production.ini`).
+This is a docker compose setup for local development. It's designed to support live extensions development which are stored inside the `src` directory.
 
-4.  Restart CKAN. For example if you've deployed CKAN with Apache on
-    Ubuntu:
+Clone the `ckanext-ed` repository to the `src` folder (we also can create a symbolic link to our projects directory for the `ckanext-ed` directory):
 
-```
-sudo service apache2 reload
-```
-
-# Config Settings
-
-Document any optional config settings here. For example:
-
-```
-# The minimum number of hours to wait before re-checking a resource
-# (optional, default: 24).
-ckanext.ed.some_setting = some_default_value
+```bash
+$ cd src
+$ git clone git@github.com:CivicActions/ckanext-ed.git
+$ cd ckanext-ed
 ```
 
-## Development Installation
+Now we have cloned all the required repositories and we're located in our main working directory `docker-ckan-ed/src/ckanext-ed`
 
-To install ckanext-ed for development, activate your CKAN
-virtualenv and do:
+For running managing commands and building static files we can use `npm`. Let's enable a Node.js environment:
 
-```
-git clone https://github.com/viderumglobal/ckanext-ed.git
-cd ckanext-ed
-python setup.py develop
-pip install -r dev-requirements.txt
-```
+> You have to have `nvm` installed or you can use any other way to get Node.js prepared - system setup etc
 
-## Running the Tests
-
-To run the tests, do:
-
-```
-nosetests --nologcapture --with-pylons=test.ini
+```bash
+$ nvm install 10
+$ nvm user 10
+$ npm install
 ```
 
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (`pip install coverage`) then
-    run:
+### Start development server
 
-```
-nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.ed --cover-inclusive --cover-erase --cover-tests
-```
+> Take a look inside `package.json` to understand what's going on under the hood. Or if you don't have Node.js installed.
 
-## Registering ckanext-ed on PyPI
+To start a development server we have to build docker images:
 
-ckanext-ed should be availabe on PyPI as
-<https://pypi.python.org/pypi/ckanext-ed>. If that link doesn't
-work, then you can register the project on PyPI for the first time by
-following these steps:
-
-1.  Create a source distribution of the project:
-
-```
-python setup.py sdist
+```bash
+$ npm run docker:build
 ```
 
-2.  Register the project:
+Let's start the development server:
 
-```
-python setup.py register
-```
+> For live development the first option is recommended to be started in another terminal window
 
-3.  Upload the source distribution to PyPI:
-
-```
-python setup.py sdist upload
+```bash
+$ npm run docker:up # Option 1: to see logs at the same window
+$ npm run docker:up -- -d # Option 2: to start as a deamon; requires understanding how to manage a docker container
 ```
 
-4.  Tag the first rel
+You can work on the `ckanext-ed` codebase having it running. On every change to the codebase the server will be reloaded automatically. It's important to mention that the ckan configuration and other things like cron/patches/etc are manages inside the `docker-ckan-ed` repo. If you want to update it you have to restart the server.
+
+Now we can visit our local ckan instance at:
+
+```
+http://ckan-dev:5000/
+```
+
+To login as an admin:
+- user: `ckan_admin`
+- pass: `test1234`
+
+## Development
+
+### Running unit tests
+
+### Running user tests
+
+### Working with static files
+
+Put your scripts/fonts/etc inside the `ckanext/ed/fanstatic` folder and images inside the `ckanext/ed/public` folder. It can be used as usual ckan `fanstatic` and `public` contents.
+
+At the same time we use CSS preprocessor (SCSS) to build our styles. Put your styles inside the `ckanext/ed/scss` and build it:
+
+```bash
+$ npm run static:build # Option 1: one-time build
+$ npm run static:watch # Option 2: build on every change
+```
+
+Processed styles will be put to the `ckanext/ed/fanstatic/css` folder.
+
+### Working with i18n
+
+To extract i18n messages and compile the catalog we have to have our development server running.
+
+In another terminal window run these commands:
+
+```
+$ npm run i18n:extract
+$ npm run i18n:compile
+```
+
+See CKAN documentation for more on i18n management.
+
+### Updating docker images
+
+Sometimes we need to update the base docker images `ckan/ckan-dev`. We can do it using:
+
+```bash
+$ npm run docker:pull
+$ npm run docker:build
+```
+
+### Reseting docker
+
+If you want to start everytning from scratch there is a way to prune your docker environment:
+
+> It will destroy all your projects inside docker!!!
+
+```
+$ docker system prune -a --volumes
+```
+
+## References
+
+- CKAN Documentation - https://docs.ckan.org/en/2.8/
