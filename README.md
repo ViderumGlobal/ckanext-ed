@@ -170,3 +170,4 @@ $ docker system prune -a --volumes
 ## References
 
 - CKAN Documentation - https://docs.ckan.org/en/2.8/
+- Deploying staging/production - see the corresponding documentation on GitLab
