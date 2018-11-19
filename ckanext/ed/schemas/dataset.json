@@ -26,13 +26,7 @@
       "form_placeholder": "Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest."
     },
     {
-      "field_name": "owner_org",
-      "label": "Office",
-      "required": true,
-      "preset": "dataset_organization"
-    },
-    {
-      "field_name": "keyword",
+      "field_name": "tag_string",
       "label": "Tags",
       "preset": "tag_string_autocomplete",
       "required": true,
@@ -41,36 +35,23 @@
       "help_text": "Tags (or keywords) help users discover your dataset; please include terms that would be used by technical and non-technical users."
     },
     {
-      "field_name": "modified",
-      "label": "Last Update",
+      "field_name": "owner_org",
+      "label": "Office",
       "required": true,
-      "form_snippet": "date.html",
-      "validators": "ignore_missing unicode isodate",
-      "help_text": "Most recent date on which the dataset was changed, updated or modified."
-    },
-    {
-      "field_name": "publisher",
-      "required": true,
-      "label": "Publisher",
+      "preset": "dataset_organization",
       "help_text": "The publishing entity and optionally their parent organization(s)."
     },
     {
-      "field_name": "contactPoint",
+      "field_name": "contactName",
       "required": true,
       "label": "Contact Name",
       "help_text": "Contact person’s name for the asset."
     },
     {
-      "field_name": "mbox",
+      "field_name": "contactEmail",
       "required": true,
       "label": "Contact Email",
       "help_text": "Contact person’s email for the asset."
-    },
-    {
-      "field_name": "identifier",
-      "required": true,
-      "label": "Unique Identifier",
-      "help_text": "A unique identifier for the dataset or API as maintained within an Agency catalog or database."
     },
     {
       "field_name": "accessLevel",
@@ -94,18 +75,30 @@
       "help_text": "The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public)."
     },
     {
+      "field_name": "identifier",
+      "required": true,
+      "label": "Unique Identifier",
+      "help_text": "A unique identifier for the dataset or API as maintained within an Agency catalog or database."
+    },
+    {
       "field_name": "bureauCode",
       "required": true,
       "label": "Bureau Code",
-      "form_placeholder": "eg. 015:11",
-      "help_text": "Federal agencies, combined agency and bureau code from OMB Circular A-11, Appendix C (PDF, CSV) in the format of 015:11."
+      "form_placeholder": "eg. 015:11, 017:99",
+      "help_text": "Federal agencies, combined agency and bureau code from OMB Circular A-11, Appendix C (PDF, CSV) in the format of 015:11. Use comma to separate values"
     },
     {
       "field_name": "programCode",
       "required": true,
       "label": "Program Code",
-      "form_placeholder": "eg. 015:11",
-      "help_text": "Federal agencies, list the primary program related to this data asset, from the Federal Program Inventory. Use the format of 015:001."
+      "form_placeholder": "eg. 015:11, 017:99",
+      "help_text": "Federal agencies, list the primary program related to this data asset, from the Federal Program Inventory. Use the format of 015:001. Use comma to separate values"
+    },
+    {
+      "field_name": "license_id",
+      "form_snippet": "license.html",
+      "help_text": "License definitions and additional information can be found at http://opendefinition.org/",
+      "label": "License"
     }
   ],
   "resource_fields": [
