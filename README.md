@@ -167,6 +167,18 @@ If you want to start everything from scratch there is a way to prune your docker
 $ docker system prune -a --volumes
 ```
 
+### Testing email notifications
+
+We use a fake SMTP server to test email notifications:
+
+- log into https://mailtrap.io/inboxes
+- select `Demo Inbox`
+- copy SMTP credentials
+- past to `docker-ckan-ed:.env` (mail service connection section)
+- restart the development server
+
+Now all email sent by `from ckan.lib.mailer import mail_user` should be sent to the `Demo Inbox` at Mailtrap.
+
 ## References
 
 - CKAN Documentation - https://docs.ckan.org/en/2.8/
