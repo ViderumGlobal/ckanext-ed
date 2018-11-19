@@ -1,0 +1,33 @@
+{
+    "scheming_version": 1,
+    "organization_type": "office",
+    "about": "Organization schema for US Dept. of Education",
+    "about_url": "https://www.viderum.com/",
+    "fields": [
+        {
+            "field_name": "title",
+            "form_placeholder": "eg. My Office",
+            "label": "Title"
+        },
+        {
+            "field_name": "name",
+            "form_placeholder": "eg. my-office",
+            "label": "URL",
+            "preset": "dataset_slug"
+        },
+        {
+            "field_name": "description",
+            "form_placeholder": "eg. Some useful notes about the office",
+            "form_snippet": "markdown.html",
+            "label": "Description"
+        },
+        {
+            "field_name": "not_used",
+            "label": "Parent",
+            "display_snippet": null,
+            "form_snippet": "org_hierarchy.html",
+            "validators": "ignore_missing"
+        }
+    ]
+}
+

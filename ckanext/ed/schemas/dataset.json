@@ -23,11 +23,12 @@
       "label": "Description",
       "required": true,
       "form_snippet": "markdown.html",
-      "form_placeholder": "eg. Some useful information about the data"
+      "form_placeholder": "Human-readable description (e.g., an abstract) with sufficient detail to enable a user to quickly understand whether the asset is of interest."
     },
     {
       "field_name": "owner_org",
-      "label": "Organization",
+      "label": "Office",
+      "required": true,
       "preset": "dataset_organization"
     },
     {
@@ -37,35 +38,39 @@
       "required": true,
       "validators": "ignore_missing",
       "form_placeholder": "eg. university, public school etc.",
-      "help_text": "Enter at least three keywords"
+      "help_text": "Tags (or keywords) help users discover your dataset; please include terms that would be used by technical and non-technical users."
     },
     {
       "field_name": "modified",
       "label": "Last Update",
-      "help_text": "Last updated date",
       "required": true,
       "form_snippet": "date.html",
-      "validators": "ignore_missing unicode isodate"
+      "validators": "ignore_missing unicode isodate",
+      "help_text": "Most recent date on which the dataset was changed, updated or modified."
     },
     {
       "field_name": "publisher",
       "required": true,
-      "label": "Publisher"
+      "label": "Publisher",
+      "help_text": "The publishing entity and optionally their parent organization(s)."
     },
     {
       "field_name": "contactPoint",
       "required": true,
-      "label": "Contact Name"
+      "label": "Contact Name",
+      "help_text": "Contact person’s name for the asset."
     },
     {
       "field_name": "mbox",
       "required": true,
-      "label": "Contact Email"
+      "label": "Contact Email",
+      "help_text": "Contact person’s email for the asset."
     },
     {
       "field_name": "identifier",
       "required": true,
-      "label": "Unique Identifier"
+      "label": "Unique Identifier",
+      "help_text": "A unique identifier for the dataset or API as maintained within an Agency catalog or database."
     },
     {
       "field_name": "accessLevel",
@@ -85,24 +90,22 @@
           "value": "non-public",
           "label": "Non-public"
         }
-      ]
+      ],
+      "help_text": "The degree to which this dataset could be made publicly-available, regardless of whether it has been made available. Choices: public (Data asset is or could be made publicly available to all without restrictions), restricted public (Data asset is available under certain use restrictions), or non-public (Data asset is not available to members of the public)."
     },
     {
-      "field_name": "maintainer",
-      "label": "Maintainer",
-      "form_placeholder": "Joe Bloggs",
+      "field_name": "bureauCode",
       "required": true,
-
-      "display_property": "dc:contributor"
+      "label": "Bureau Code",
+      "form_placeholder": "eg. 015:11",
+      "help_text": "Federal agencies, combined agency and bureau code from OMB Circular A-11, Appendix C (PDF, CSV) in the format of 015:11."
     },
     {
-      "field_name": "maintainer_email",
-      "label": "Maintainer Email",
-      "form_placeholder": "joe@example.com",
-      "display_property": "dc:contributor",
-      "display_snippet": "email.html",
+      "field_name": "programCode",
       "required": true,
-      "display_email_name_field": "maintainer"
+      "label": "Program Code",
+      "form_placeholder": "eg. 015:11",
+      "help_text": "Federal agencies, list the primary program related to this data asset, from the Federal Program Inventory. Use the format of 015:001."
     }
   ],
   "resource_fields": [
