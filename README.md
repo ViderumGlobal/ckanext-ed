@@ -179,6 +179,18 @@ We use a fake SMTP server to test email notifications:
 
 Now all email sent by `from ckan.lib.mailer import mail_user` should be sent to the `Demo Inbox` at Mailtrap.
 
+### Generating data.json
+
+See the "Open Data" reference:
+https://project-open-data.cio.gov/v1.1/schema/
+
+See the metadata analysis regarding the project:
+https://docs.google.com/spreadsheets/d/1ZPRXxKCMST-z5Exvvuf0MxDVjE2l-4jC1oKWOnpDz9M/edit#gid=44728761
+
+We generate `data.json` using our fork of `ckanext-datajson` at https://github.com/okfn/ckanext-datajson/tree/ed (the `ed` branch).
+
+To update the translation map (`package -> data.json`) edit `export_map/export.map.json`. It uses a self-explanatory structure. Our focus is mostly on `field` and `extra` fields. We use `ckanext-scheming` so `extra` should be `false` for all relevant fields.
+
 ## References
 
 - CKAN Documentation - https://docs.ckan.org/en/2.8/
