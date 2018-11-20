@@ -17,13 +17,14 @@ This is the main repo for the US Department of Education ckan-based project. Thi
   - [Running E2E tests](#running-e2e-tests)
   - [Working with static files](#working-with-static-files)
   - [Working with i18n](#working-with-i18n)
+  - [Testing email notifications](#testing-email-notifications)
+  - [Generating data.json](#generating-datajson)
   - [Log into the container](#log-into-the-container)
   - [Updating docker images](#updating-docker-images)
   - [Reseting docker](#reseting-docker)
-  - [Testing email notifications](#testing-email-notifications)
-  - [Generating data.json](#generating-datajson)
+  - [Generating TOC](#generating-toc)
 - [Troubleshooting](#troubleshooting)
-  - [The admin credentials doesn't work](#the-admin-credentials-doesnt-work)
+  - [The admin credentials don't work](#the-admin-credentials-dont-work)
 - [References](#references)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
