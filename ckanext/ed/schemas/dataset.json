@@ -99,6 +99,18 @@
       "form_snippet": "license.html",
       "help_text": "License definitions and additional information can be found at http://opendefinition.org/",
       "label": "License"
+    },
+    {
+      "field_name": "rights",
+      "label": "Rights",
+      "form_placeholder": "eg. This dataset contains Personally Identifiable Information",
+      "help_text": "This may include information regarding access or restrictions based on privacy, security, or other policies. This should also serve as an explanation for the selected “accessLevel” including instructions for how to access a restricted file, if applicable, or explanation for why a “non-public” or “restricted public” data asset is not “public,” if applicable. Text, 255 characters."
+    },
+    {
+      "field_name": "spatial",
+      "label": "Spatial",
+      "form_placeholder": "eg. Lincoln, Nebraska",
+      "help_text": "The range of spatial applicability of a dataset. Could include a spatial region like a bounding box or a named place."
     }
   ],
   "resource_fields": [
