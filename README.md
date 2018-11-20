@@ -227,7 +227,7 @@ $ npm run toc
 
 ## Troubleshooting
 
-### The admin credentials doesn't work
+### The admin credentials don't work
 
 There had been a bug in `ckan-dev` that was fixed. Run the following commands to update your ckan image:
 
