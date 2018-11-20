@@ -42,19 +42,19 @@
       "help_text": "The publishing entity and optionally their parent organization(s)."
     },
     {
-      "field_name": "contactName",
+      "field_name": "contact_name",
       "required": true,
       "label": "Contact Name",
       "help_text": "Contact person’s name for the asset."
     },
     {
-      "field_name": "contactEmail",
+      "field_name": "contact_email",
       "required": true,
       "label": "Contact Email",
       "help_text": "Contact person’s email for the asset."
     },
     {
-      "field_name": "accessLevel",
+      "field_name": "access_level",
       "label": "Public Access Level",
       "preset": "select",
       "required": true,
@@ -81,14 +81,14 @@
       "help_text": "A unique identifier for the dataset or API as maintained within an Agency catalog or database."
     },
     {
-      "field_name": "bureauCode",
+      "field_name": "bureau_code",
       "required": true,
       "label": "Bureau Code",
       "form_placeholder": "eg. 015:11, 017:99",
       "help_text": "Federal agencies, combined agency and bureau code from OMB Circular A-11, Appendix C (PDF, CSV) in the format of 015:11. Use comma to separate values"
     },
     {
-      "field_name": "programCode",
+      "field_name": "program_code",
       "required": true,
       "label": "Program Code",
       "form_placeholder": "eg. 015:11, 017:99",
