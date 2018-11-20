@@ -191,6 +191,17 @@ We generate `data.json` using our fork of `ckanext-datajson` at https://github.c
 
 To update the translation map (`package -> data.json`) edit `export_map/export.map.json`. It uses a self-explanatory structure. Our focus is mostly on `field` and `extra` fields. We use `ckanext-scheming` so `extra` should be `false` for all relevant fields.
 
+## Troubleshooting
+
+### The admin credentials doesn't work
+
+There had been a bug in `ckan-dev` that was fixed. Run the following commands to update your ckan image:
+
+```bash
+$ npm run docker:pull
+$ npm run docker:build
+```
+
 ## References
 
 - CKAN Documentation - https://docs.ckan.org/en/2.8/
