@@ -2,6 +2,32 @@
 
 This is the main repo for the US Department of Education ckan-based project. This documentation covers all of the development aspects.
 
+## Table of contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Getting started](#getting-started)
+  - [Requirements](#requirements)
+  - [Setup environment](#setup-environment)
+  - [Start development server](#start-development-server)
+- [Development](#development)
+  - [Running unit tests](#running-unit-tests)
+  - [Running E2E tests](#running-e2e-tests)
+  - [Working with static files](#working-with-static-files)
+  - [Working with i18n](#working-with-i18n)
+  - [Log into the container](#log-into-the-container)
+  - [Updating docker images](#updating-docker-images)
+  - [Reseting docker](#reseting-docker)
+  - [Testing email notifications](#testing-email-notifications)
+  - [Generating data.json](#generating-datajson)
+- [Troubleshooting](#troubleshooting)
+  - [The admin credentials doesn't work](#the-admin-credentials-doesnt-work)
+- [References](#references)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Getting started
 
 ### Requirements
@@ -138,6 +164,30 @@ $ npm run i18n:compile
 
 See CKAN documentation for more on i18n management.
 
+### Testing email notifications
+
+We use a fake SMTP server to test email notifications:
+
+- log into https://mailtrap.io/inboxes
+- select `Demo Inbox`
+- copy SMTP credentials
+- past to `docker-ckan-ed:.env` (mail service connection section)
+- restart the development server
+
+Now all email sent by `from ckan.lib.mailer import mail_user` should be sent to the `Demo Inbox` at Mailtrap.
+
+### Generating data.json
+
+See the "Open Data" reference:
+https://project-open-data.cio.gov/v1.1/schema/
+
+See the metadata analysis regarding the project:
+https://docs.google.com/spreadsheets/d/1ZPRXxKCMST-z5Exvvuf0MxDVjE2l-4jC1oKWOnpDz9M/edit#gid=44728761
+
+We generate `data.json` using our fork of `ckanext-datajson` at https://github.com/okfn/ckanext-datajson/tree/ed (the `ed` branch).
+
+To update the translation map (`package -> data.json`) edit `export_map/export.map.json`. It uses a self-explanatory structure. Our focus is mostly on `field` and `extra` fields. We use `ckanext-scheming` so `extra` should be `false` for all relevant fields.
+
 ### Log into the container
 
 To issue commands inside a running container (after `$ npm run docker:up`):
@@ -167,29 +217,13 @@ If you want to start everything from scratch there is a way to prune your docker
 $ docker system prune -a --volumes
 ```
 
-### Testing email notifications
+### Generating TOC
 
-We use a fake SMTP server to test email notifications:
+To update this readme table of contents run:
 
-- log into https://mailtrap.io/inboxes
-- select `Demo Inbox`
-- copy SMTP credentials
-- past to `docker-ckan-ed:.env` (mail service connection section)
-- restart the development server
-
-Now all email sent by `from ckan.lib.mailer import mail_user` should be sent to the `Demo Inbox` at Mailtrap.
-
-### Generating data.json
-
-See the "Open Data" reference:
-https://project-open-data.cio.gov/v1.1/schema/
-
-See the metadata analysis regarding the project:
-https://docs.google.com/spreadsheets/d/1ZPRXxKCMST-z5Exvvuf0MxDVjE2l-4jC1oKWOnpDz9M/edit#gid=44728761
-
-We generate `data.json` using our fork of `ckanext-datajson` at https://github.com/okfn/ckanext-datajson/tree/ed (the `ed` branch).
-
-To update the translation map (`package -> data.json`) edit `export_map/export.map.json`. It uses a self-explanatory structure. Our focus is mostly on `field` and `extra` fields. We use `ckanext-scheming` so `extra` should be `false` for all relevant fields.
+```bash
+$ npm run toc
+```
 
 ## Troubleshooting
 
