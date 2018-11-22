@@ -1,0 +1,12 @@
+Dear {{ publisher_name }},
+
+The dataset publishing request for "{{ package_title }}" has been rejected.
+
+Please contact the site administrators for the further information.
+
+Have a nice day.
+
+
+--
+Message sent by {{ site_title }} ({{ site_url }})
+This is an automated message, please don't respond to this address.

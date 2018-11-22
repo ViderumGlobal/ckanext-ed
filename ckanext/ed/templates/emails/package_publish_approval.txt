@@ -1,0 +1,14 @@
+Dear {{ publisher_name }},
+
+The dataset publishing request for "{{ package_title }}" has been approved.
+
+You can view and manage the dataset on the following page after logging in to the site:
+
+   {{ package_link }}
+
+Have a nice day.
+
+
+--
+Message sent by {{ site_title }} ({{ site_url }})
+This is an automated message, please don't respond to this address.

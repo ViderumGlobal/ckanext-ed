@@ -23,10 +23,10 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
         }
 
     # IActions
-
     def get_actions(self):
         return {
             'ed_prepare_zip_resources': actions.prepare_zip_resources,
+            'dataset_create': actions.dataset_create
         }
 
     # IConfigurer
@@ -39,6 +39,13 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # IRoutes
 
     def before_map(self, map):
+        publish_controller = 'ckanext.ed.controller:PublishControler'
+        map.connect('/dataset-publish/{id}/approve',
+                     controller=publish_controller,
+                     action='approve')
+        map.connect('/dataset-publish/{id}/reject',
+                     controller=publish_controller,
+                     action='reject')
         map.connect(
             'download_zip',
             '/download/zip/{zip_id}',

@@ -1,12 +1,18 @@
-from ckan.plugins import toolkit
-import uuid
-from ckanext.ed import helpers
-import zipfile
-import os
-from ckan.controllers.admin import get_sysadmins
-import requests
 from logging import getLogger
+import os
+import requests
+import uuid
+import zipfile
 
+from ckan.controllers.admin import get_sysadmins
+from ckan.lib.mailer import MailerException
+from ckan.plugins import toolkit
+import ckan.logic.action.create as create_core
+import ckan.logic.action.get as get_core
+import ckan.logic.action.patch as patch_core
+
+from ckanext.ed import helpers
+from ckanext.ed.mailer import mail_package_publish_request_to_sysadmins
 
 SUPPORTED_RESOURCE_MIMETYPES = [
     'application/vnd.openxmlformats-officedocument.presentationml.presentation',
@@ -136,3 +142,28 @@ def prepare_zip_resources(context, data_dict):
     os.remove(file_path)
 
     return {'zip_id': None}
+
+
+@toolkit.side_effect_free
+def dataset_create(context, data_dict):
+    dataset_dict = create_core.package_create(context, data_dict)
+    # We create a package as usual because we can't set state=approval_needed
+    # on creation step and then we patch the package
+    notify_sysadmins = False
+    user = get_core.user_show(context, {'id': context['user']})
+
+    if not user['sysadmin']:
+        # Not a sysadmin, create as pending and notify sysadmins
+        context['__ed_state_pending'] = True
+        dataset_dict = patch_core.package_patch(context,
+            {'id': dataset_dict['id'], 'state': 'approval_needed'})
+        notify_sysadmins = True
+
+    if notify_sysadmins:
+        try:
+            mail_package_publish_request_to_sysadmins(context, dataset_dict)
+        except MailerException:
+            message = '[email] Package publishing request notification is not sent: {0}'
+            log.critical(message.format(dataset_dict['title']))
+
+    return dataset_dict
