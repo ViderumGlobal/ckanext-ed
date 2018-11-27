@@ -105,19 +105,21 @@ To log in as an admin:
 
 ### Running unit tests
 
-We write and store unit tests inside the `ckanext/ed/tests` directory. See CKAN documentation for more information regarding how to write tests. To run unit tests we have to stop development server and start testing server:
-
-```bash
-$ npm run docker:up
-# It's running so we use CTRL-C to stop
-$ npm run docker:up:test
-```
+We write and store unit tests inside the `ckanext/ed/tests` directory. See CKAN documentation for more information regarding how to write tests. To run unit tests you need to be running the `ckan-dev` service.
 
 In another terminal window run the test command:
 
 ```bash
 $ npm run test:unit
 ```
+
+You can pass additional nosetests options inthe following way (note the two `--` characters):
+
+```bash
+$ npm run test:unit -- --ipdb --ipdb-failure
+```
+
+Right now all tests under `ckanext/ed/tests` will be run, it is not possible to choose a specific file or test.
 
 ### Running E2E tests
 
