@@ -105,3 +105,17 @@ def get_total_views_for_dataset(id):
         return dataset.get('tracking_summary').get('total')
     except Exception:
         return 0
+
+
+def is_admin(user):
+    """
+    Returns True if user is admin of any organisation
+
+    :param user: user name
+    :type user: string
+
+    :returns: True/False
+    :rtype: boolean
+    """
+    user_orgs = _get_action('organization_list_for_user', {}, {'user': user})
+    return any([i.get('capacity') == 'admin' for i in user_orgs])

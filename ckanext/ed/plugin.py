@@ -17,6 +17,7 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_helpers(self):
         return {
             'ed_get_groups': helpers.get_groups,
+            'ed_is_admin': helpers.is_admin,
             'ed_get_recently_updated_datasets': helpers.get_recently_updated_datasets,
             'ed_get_most_popular_datasets': helpers.get_most_popular_datasets,
             'ed_get_total_views_for_dataset': helpers.get_total_views_for_dataset,
