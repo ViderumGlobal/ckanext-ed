@@ -1,8 +1,8 @@
+from ckan.lib.plugins import DefaultTranslation
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from ckanext.ed import helpers
-from ckanext.ed import actions
-from ckan.lib.plugins import DefaultTranslation
+
+from ckanext.ed import actions, helpers, validators
 
 
 class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -11,9 +11,9 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IValidators)
 
     # ITemplateHelpers
-
     def get_helpers(self):
         return {
             'ed_get_groups': helpers.get_groups,
@@ -23,21 +23,18 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
         }
 
     # IActions
-
     def get_actions(self):
         return {
             'ed_prepare_zip_resources': actions.prepare_zip_resources,
         }
 
     # IConfigurer
-
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'ed')
 
     # IRoutes
-
     def before_map(self, map):
         map.connect(
             'download_zip',
@@ -47,3 +44,9 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
         )
 
         return map
+
+    # IValidators
+    def get_validators(self):
+        return {
+            'state_validator': validators.state_validator
+        }
