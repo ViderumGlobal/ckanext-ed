@@ -27,6 +27,7 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_actions(self):
         return {
             'ed_prepare_zip_resources': actions.prepare_zip_resources,
+            'package_search': actions.package_search
         }
 
     # IConfigurer

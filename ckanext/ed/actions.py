@@ -1,12 +1,15 @@
-from ckan.plugins import toolkit
-import uuid
-from ckanext.ed import helpers
-import zipfile
-import os
-from ckan.controllers.admin import get_sysadmins
-import requests
 from logging import getLogger
+import os
+import requests
+import uuid
+import zipfile
 
+from ckan.controllers.admin import get_sysadmins
+from ckan.logic import check_access, NotFound
+from ckan.logic.action.get import package_search as core_package_search
+from ckan.plugins import toolkit
+
+from ckanext.ed import helpers
 
 SUPPORTED_RESOURCE_MIMETYPES = [
     'application/vnd.openxmlformats-officedocument.presentationml.presentation',
@@ -136,3 +139,10 @@ def prepare_zip_resources(context, data_dict):
     os.remove(file_path)
 
     return {'zip_id': None}
+
+
+@toolkit.side_effect_free
+def package_search(context, data_dict):
+    data_dict['fq'] = '!(approval_state:approval_pending) ' + data_dict.get('fq', '')
+    packages = core_package_search(context, data_dict)
+    return packages
