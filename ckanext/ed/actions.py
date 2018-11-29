@@ -7,6 +7,7 @@ import zipfile
 from ckan.controllers.admin import get_sysadmins
 from ckan.logic import check_access, NotFound
 from ckan.logic.action.get import package_search as core_package_search
+from ckan.logic.action.get import package_show as core_package_show
 from ckan.plugins import toolkit
 
 from ckanext.ed import helpers
@@ -146,3 +147,14 @@ def package_search(context, data_dict):
     data_dict['fq'] = '!(approval_state:approval_pending) ' + data_dict.get('fq', '')
     packages = core_package_search(context, data_dict)
     return packages
+
+
+@toolkit.side_effect_free
+def package_show(context, data_dict):
+    package = core_package_show(context, data_dict)
+    # User with less perms then creator should not be able to access pending dataset
+    approval_pending = package.get('approval_state') == 'approval_pending'
+    is_editor = check_access('package_create', context, data_dict)
+    if not is_editor and approval_pending:
+        raise NotFound
+    return package
