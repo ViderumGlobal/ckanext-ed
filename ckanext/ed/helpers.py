@@ -24,26 +24,31 @@ def get_groups():
     return groups
 
 
-def get_recently_updated_datasets(limit=5):
+def get_recently_updated_datasets(limit=5, user=None):
     '''
      Returns recent created or updated datasets.
     :param limit: Limit of the datasets to be returned. Default is 5.
     :type limit: integer
+    :param user: user name
+    :type user: string
+
     :returns: a list of recently created or updated datasets
     :rtype: list
     '''
     try:
-        pkg_search_results = toolkit.get_action('package_search')(data_dict={
-            'sort': 'metadata_modified desc',
-            'rows': limit,
-        })['results']
+        pkg_search_results = toolkit.get_action('package_search')(
+            context={'user': user},
+            data_dict={
+                'sort': 'metadata_modified desc',
+                'rows': limit
+            })['results']
 
     except toolkit.ValidationError, search.SearchError:
         return []
     else:
         pkgs = []
         for pkg in pkg_search_results:
-            package = toolkit.get_action('package_show')(
+            package = toolkit.get_action('package_show')(context={'user': user},
                 data_dict={'id': pkg['id']})
             modified = datetime.strptime(
                 package['metadata_modified'].split('T')[0], '%Y-%m-%d')
@@ -52,15 +57,20 @@ def get_recently_updated_datasets(limit=5):
         return pkgs
 
 
-def get_most_popular_datasets(limit=5):
+def get_most_popular_datasets(limit=5, user=None):
     '''
      Returns most popular datasets based on total views.
     :param limit: Limit of the datasets to be returned. Default is 5.
     :type limit: integer
+    :param user: user name
+    :type user: string
+
     :returns: a list of most popular datasets
     :rtype: list
     '''
-    data = pkg_search_results = toolkit.get_action('package_search')(data_dict={
+    data = pkg_search_results = toolkit.get_action('package_search')(
+        context={'user': user},
+        data_dict={
             'sort': 'views_total desc',
             'rows': limit,
         })['results']
@@ -117,5 +127,6 @@ def is_admin(user):
     :returns: True/False
     :rtype: boolean
     """
-    user_orgs = _get_action('organization_list_for_user', {}, {'user': user})
+    user_orgs = _get_action('organization_list_for_user', {'user': user}, {'user': user})
+    assert False, user_orgs
     return any([i.get('capacity') == 'admin' for i in user_orgs])
