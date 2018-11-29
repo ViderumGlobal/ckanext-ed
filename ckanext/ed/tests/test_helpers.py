@@ -1,6 +1,8 @@
 from ckan.tests import helpers as test_helpers
+from ckan.tests import factories as core_factories
+
 from ckanext.ed import helpers
-from ckan.tests import factories
+from ckanext.ed.tests import factories
 
 
 class TestHelpers(test_helpers.FunctionalTestBase):
@@ -19,13 +21,13 @@ class TestHelpers(test_helpers.FunctionalTestBase):
         assert result[0]['id'] == dataset['id']
 
     def test_get_groups(self):
-        group1 = factories.Group()
+        group1 = core_factories.Group()
 
         result = helpers.get_groups()
         assert len(result) == 1
-        factories.Group()
-        factories.Group()
-        factories.Group()
+        core_factories.Group()
+        core_factories.Group()
+        core_factories.Group()
         result = helpers.get_groups()
         assert result[0]['id'] == group1['id']
         assert len(result) == 4
