@@ -128,5 +128,4 @@ def is_admin(user):
     :rtype: boolean
     """
     user_orgs = _get_action('organization_list_for_user', {'user': user}, {'user': user})
-    assert False, user_orgs
     return any([i.get('capacity') == 'admin' for i in user_orgs])

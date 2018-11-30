@@ -49,3 +49,24 @@ class TestHelpers(test_helpers.FunctionalTestBase):
         result = helpers.get_groups()
         assert result[0]['id'] == group1['id']
         assert len(result) == 4
+
+    def test_is_admin(self):
+        core_factories.User(name='george')
+        core_factories.User(name='john')
+        core_factories.User(name='paul')
+        core_factories.Organization(
+            users=[
+                {'name': 'george', 'capacity': 'admin'},
+                {'name': 'john', 'capacity': 'editor'},
+                {'name': 'paul', 'capacity': 'member'}
+            ]
+        )
+
+        result = helpers.is_admin('george')
+        assert result, '%s is not True' % result
+        result = helpers.is_admin('john')
+        assert not result, '%s is not False' %  result
+        result = helpers.is_admin('paul')
+        assert not result, '%s is not False' % result
+        result = helpers.is_admin('ringo')
+        assert not result, '%s is not False' %  result
