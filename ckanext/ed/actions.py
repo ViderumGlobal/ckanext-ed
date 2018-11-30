@@ -5,7 +5,6 @@ import uuid
 import zipfile
 
 from ckan.controllers.admin import get_sysadmins
-from ckan.logic import check_access, NotFound
 from ckan.logic.action.get import package_search as core_package_search
 from ckan.logic.action.get import package_show as core_package_show
 from ckan.plugins import toolkit
@@ -154,7 +153,11 @@ def package_show(context, data_dict):
     package = core_package_show(context, data_dict)
     # User with less perms then creator should not be able to access pending dataset
     approval_pending = package.get('approval_state') == 'approval_pending'
-    is_editor = check_access('package_update', context, data_dict)
-    if not is_editor and approval_pending:
-        raise NotFound
+    try:
+        toolkit.check_access('package_update', context, data_dict)
+        can_edit = True
+    except toolkit.NotAuthorized:
+        can_edit = False
+    if not can_edit and approval_pending:
+        raise toolkit.ObjectNotFound
     return package
