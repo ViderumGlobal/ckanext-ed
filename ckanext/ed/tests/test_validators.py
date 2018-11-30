@@ -19,13 +19,13 @@ class TestValidators(FunctionalTestBase):
         data_dict = _create_dataset_dict('test-dataset-1', 'us-ed-1')
         call_action('package_create', context, **data_dict)
         dataset = call_action('package_show', context, id='test-dataset-1')
-        assert_equals(dataset.get('approval_state'), None)
+        assert_equals(dataset.get('approval_state'), 'active')
 
         context = _create_context({'name': 'george'})
         data_dict = _create_dataset_dict('test-dataset-2', 'us-ed-1')
         call_action('package_create', context, **data_dict)
         dataset = call_action('package_show', context, id='test-dataset-2')
-        assert_equals(dataset.get('approval_state'), None)
+        assert_equals(dataset.get('approval_state'), 'active')
 
 
     def test_dataset_by_editor_is_approval_pending(self):
