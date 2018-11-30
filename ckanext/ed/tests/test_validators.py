@@ -6,7 +6,7 @@ from ckan.tests.helpers import call_action, FunctionalTestBase
 
 
 class TestValidators(FunctionalTestBase):
-    def test_dataset_by_sysadmin_and_admin_is_approved(self):
+    def test_dataset_by_sysadmin_and_admin_is_not_approval_pending(self):
         core_factories.User(name='george')
         core_factories.Organization(
             users=[{'name': 'george', 'capacity': 'admin'}],
@@ -19,13 +19,13 @@ class TestValidators(FunctionalTestBase):
         data_dict = _create_dataset_dict('test-dataset-1', 'us-ed-1')
         call_action('package_create', context, **data_dict)
         dataset = call_action('package_show', context, id='test-dataset-1')
-        assert_equals(dataset['approval_state'], 'approved')
+        assert_equals(dataset.get('approval_state'), None)
 
         context = _create_context({'name': 'george'})
         data_dict = _create_dataset_dict('test-dataset-2', 'us-ed-1')
         call_action('package_create', context, **data_dict)
         dataset = call_action('package_show', context, id='test-dataset-2')
-        assert_equals(dataset['approval_state'], 'approved')
+        assert_equals(dataset.get('approval_state'), None)
 
 
     def test_dataset_by_editor_is_approval_pending(self):

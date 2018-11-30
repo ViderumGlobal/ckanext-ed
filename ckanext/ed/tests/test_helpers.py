@@ -58,7 +58,7 @@ class TestHelpers(test_helpers.FunctionalTestBase):
             users=[
                 {'name': 'george', 'capacity': 'admin'},
                 {'name': 'john', 'capacity': 'editor'},
-                {'name': 'paul', 'capacity': 'member'}
+                {'name': 'paul', 'capacity': 'reader'}
             ]
         )
 
