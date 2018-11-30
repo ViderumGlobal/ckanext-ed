@@ -154,7 +154,7 @@ def package_show(context, data_dict):
     package = core_package_show(context, data_dict)
     # User with less perms then creator should not be able to access pending dataset
     approval_pending = package.get('approval_state') == 'approval_pending'
-    is_editor = check_access('package_create', context, data_dict)
+    is_editor = check_access('package_update', context, data_dict)
     if not is_editor and approval_pending:
         raise NotFound
     return package
