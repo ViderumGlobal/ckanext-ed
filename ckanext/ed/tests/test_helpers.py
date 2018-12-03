@@ -29,8 +29,8 @@ class TestHelpers(test_helpers.FunctionalTestBase):
         org = core_factories.Organization(
             users=[{'name': user['name'], 'capacity': 'admin'}]
         )
-        factories.Dataset()
-        factories.Dataset()
+        factories.Dataset(approval_state='approval_pending')
+        factories.Dataset(approval_state='approval_pending')
         factories.Dataset(owner_org=org['id'])
         dataset = factories.Dataset(owner_org=org['id'])
 

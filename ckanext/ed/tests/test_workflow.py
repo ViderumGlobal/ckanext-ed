@@ -65,8 +65,6 @@ class TestWorFlows(FunctionalTestBase):
         packages = call_action('package_search', context, **{})
         assert_equals(packages['count'], 1)
 
-
-
     def test_package_show_admin_can_see_both(self):
         context = {'user': 'george'}
         packages = call_action('package_show', context, **{'id': self.pkg_1})
