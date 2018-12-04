@@ -12,6 +12,7 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IValidators)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
     # ITemplateHelpers
     def get_helpers(self):
@@ -27,9 +28,15 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_actions(self):
         return {
             'ed_prepare_zip_resources': actions.prepare_zip_resources,
-            'package_search': actions.package_search,
             'package_show': actions.package_show
         }
+
+    # IPackageController
+    def before_search(self, search_params):
+        search_params.update({
+            'fq': '!(approval_state:approval_pending) ' + search_params.get('fq', '')
+        })
+        return search_params
 
     # IConfigurer
     def update_config(self, config_):
