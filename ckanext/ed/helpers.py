@@ -29,38 +29,39 @@ def get_recently_updated_datasets(limit=5):
      Returns recent created or updated datasets.
     :param limit: Limit of the datasets to be returned. Default is 5.
     :type limit: integer
+    :param user: user name
+    :type user: string
+
     :returns: a list of recently created or updated datasets
     :rtype: list
     '''
     try:
-        pkg_search_results = toolkit.get_action('package_search')(data_dict={
-            'sort': 'metadata_modified desc',
-            'rows': limit,
-        })['results']
+        pkg_search_results = toolkit.get_action('package_search')(
+            data_dict={
+                'sort': 'metadata_modified desc',
+                'rows': limit
+            })['results']
+        return pkg_search_results
 
     except toolkit.ValidationError, search.SearchError:
         return []
     else:
-        pkgs = []
-        for pkg in pkg_search_results:
-            package = toolkit.get_action('package_show')(
-                data_dict={'id': pkg['id']})
-            modified = datetime.strptime(
-                package['metadata_modified'].split('T')[0], '%Y-%m-%d')
-            package['days_ago_modified'] = ((datetime.now() - modified).days)
-            pkgs.append(package)
-        return pkgs
-
+        log.warning('Unexpected Error occured while searching')
+        return []
 
 def get_most_popular_datasets(limit=5):
     '''
      Returns most popular datasets based on total views.
     :param limit: Limit of the datasets to be returned. Default is 5.
     :type limit: integer
+    :param user: user name
+    :type user: string
+
     :returns: a list of most popular datasets
     :rtype: list
     '''
-    data = pkg_search_results = toolkit.get_action('package_search')(data_dict={
+    data = pkg_search_results = toolkit.get_action('package_search')(
+        data_dict={
             'sort': 'views_total desc',
             'rows': limit,
         })['results']
@@ -105,3 +106,17 @@ def get_total_views_for_dataset(id):
         return dataset.get('tracking_summary').get('total')
     except Exception:
         return 0
+
+
+def is_admin(user):
+    """
+    Returns True if user is admin of any organisation
+
+    :param user: user name
+    :type user: string
+
+    :returns: True/False
+    :rtype: boolean
+    """
+    user_orgs = _get_action('organization_list_for_user', {'user': user}, {'user': user})
+    return any([i.get('capacity') == 'admin' for i in user_orgs])
