@@ -1,11 +1,17 @@
-from ckan.plugins import toolkit
-import uuid
-from ckanext.ed import helpers
-import zipfile
-import os
-from ckan.controllers.admin import get_sysadmins
-import requests
 from logging import getLogger
+import os
+import requests
+import uuid
+import zipfile
+
+from ckan.controllers.admin import get_sysadmins
+from ckan.lib.mailer import MailerException
+from ckan.logic.action.create import package_create as core_package_create
+from ckan.logic.action.get import package_show as core_package_show
+from ckan.plugins import toolkit
+
+from ckanext.ed import helpers
+from ckanext.ed.mailer import mail_package_publish_request_to_admins
 
 
 SUPPORTED_RESOURCE_MIMETYPES = [
@@ -136,3 +142,30 @@ def prepare_zip_resources(context, data_dict):
     os.remove(file_path)
 
     return {'zip_id': None}
+
+
+@toolkit.side_effect_free
+def package_show(context, data_dict):
+    package = core_package_show(context, data_dict)
+    # User with less perms then creator should not be able to access pending dataset
+    approval_pending = package.get('approval_state') == 'approval_pending'
+    try:
+        toolkit.check_access('package_update', context, data_dict)
+        can_edit = True
+    except toolkit.NotAuthorized:
+        can_edit = False
+    if not can_edit and approval_pending:
+        raise toolkit.ObjectNotFound
+    return package
+
+
+@toolkit.side_effect_free
+def package_create(context, data_dict):
+    dataset_dict = core_package_create(context, data_dict)
+    if dataset_dict.get('approval_state') == 'approval_pending':
+        try:
+            mail_package_publish_request_to_admins(context, dataset_dict)
+        except MailerException:
+            message = '[email] Package Publishing request is not sent: {0}'
+            log.critical(message.format(data_dict.get('title')))
+    return dataset_dict

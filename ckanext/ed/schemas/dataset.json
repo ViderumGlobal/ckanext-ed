@@ -117,6 +117,11 @@
       "label": "Temporal",
       "form_placeholder": "eg. 2000-01-15T00:45:00Z/2010-01-15T00:06:00Z",
       "help_text": "The range of temporal applicability of a dataset (i.e., a start and end date of applicability for the data)."
+    },
+    {
+      "field_name": "approval_state",
+      "form_snippet": null,
+      "validators": "state_validator"
     }
   ],
   "resource_fields": [
