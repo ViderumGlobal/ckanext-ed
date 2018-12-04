@@ -16,11 +16,11 @@ class TestHelpers(test_helpers.FunctionalTestBase):
         factories.Dataset(owner_org=org['id'])
         dataset = factories.Dataset(owner_org=org['id'])
 
-        result = helpers.get_recently_updated_datasets(user=user['name'])
+        result = helpers.get_recently_updated_datasets()
         assert len(result) == 4, 'Epextec 4 but got %s' % len(result)
         assert result[0]['id'] == dataset['id']
 
-        result = helpers.get_recently_updated_datasets(limit=2, user=user['name'])
+        result = helpers.get_recently_updated_datasets(limit=2)
         assert len(result) == 2
         assert result[0]['id'] == dataset['id']
 
@@ -29,12 +29,12 @@ class TestHelpers(test_helpers.FunctionalTestBase):
         org = core_factories.Organization(
             users=[{'name': user['name'], 'capacity': 'admin'}]
         )
-        factories.Dataset(approval_state='approval_pending')
-        factories.Dataset(approval_state='approval_pending')
+        factories.Dataset(owner_org=org['id'], approval_state='approval_pending')
+        factories.Dataset(owner_org=org['id'], approval_state='approval_pending')
         factories.Dataset(owner_org=org['id'])
         dataset = factories.Dataset(owner_org=org['id'])
 
-        result = helpers.get_recently_updated_datasets(user=user['name'])
+        result = helpers.get_recently_updated_datasets()
         assert len(result) == 2, 'Epextec 2 but got %s' % len(result)
         assert result[0]['id'] == dataset['id']
 
