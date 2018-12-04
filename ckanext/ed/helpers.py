@@ -108,15 +108,22 @@ def get_total_views_for_dataset(id):
         return 0
 
 
-def is_admin(user):
+def is_admin(user, office=None):
     """
-    Returns True if user is admin of any organisation
+    Returns True if user is admin of given organisation.
+    If office param is not provided checks if user is admin of any organisation
 
     :param user: user name
+    :type user: string
+    :param office: office id
     :type user: string
 
     :returns: True/False
     :rtype: boolean
     """
-    user_orgs = _get_action('organization_list_for_user', {'user': user}, {'user': user})
+    user_orgs = _get_action(
+                'organization_list_for_user', {'user': user}, {'user': user})
+    if office is not None:
+        return any([i.get('capacity') == 'admin' \
+                and i.get('id') == office for i in user_orgs])
     return any([i.get('capacity') == 'admin' for i in user_orgs])

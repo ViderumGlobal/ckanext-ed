@@ -47,6 +47,13 @@ class EDPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     # IRoutes
     def before_map(self, map):
+        publish_controller = 'ckanext.ed.controller:ApproveRejectControler'
+        map.connect('/dataset-publish/{id}/approve',
+                    controller=publish_controller,
+                    action='approve')
+        map.connect('/dataset-publish/{id}/reject',
+                    controller=publish_controller,
+                    action='reject')
         map.connect(
             'download_zip',
             '/download/zip/{zip_id}',

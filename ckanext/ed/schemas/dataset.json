@@ -121,7 +121,8 @@
     {
       "field_name": "approval_state",
       "form_snippet": null,
-      "validators": "state_validator"
+      "validators": "state_validator",
+      "label": "Approved"
     }
   ],
   "resource_fields": [
