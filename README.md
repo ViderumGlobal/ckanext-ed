@@ -1,5 +1,8 @@
 # ckanext-ed
 
+**Hello! We’ve moved to Datopian and this repo is no longer maintained. Please follow this link for an updated version:
+https://github.com/datopian/ckanext-ed**
+
 This is the main repo for the US Department of Education ckan-based project. This documentation covers all of the development aspects.
 
 ## Table of contents
